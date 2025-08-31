@@ -1,0 +1,20 @@
+---
+- hosts: dockerhost
+
+
+
+  tasks:
+  - name: stop contianer
+    command: docker stop registe_server
+    ignore_errors: yes
+  - name: remove contianer
+    command: docker rm -f registe_server
+    ignore_errors: yes
+
+  - name: remove image
+    command: docker rmi gaber1720/regapp:v1
+    ignore_errors: yes
+
+  - name: creat contianer
+    command: docker run -d --name registe_server -p 8082:8080  gaber1720/regapp:v1
+
